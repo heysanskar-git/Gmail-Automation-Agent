@@ -2,7 +2,8 @@
 
 An autonomous email triage and workflow automation pipeline built with **n8n** and powered by local **Ollama LLMs**. 
 
-▶️ [Watch Workflow Demonstration Video](./Gmail_Automation.mp4)
+<video src="Gmail_Automation.mp4" controls width="100%">
+</video>
 
 This system monitors your Gmail inbox, classifies incoming messages into contextual categories, applies labels, extracts structured information, and routes them to dedicated AI sub-agents to draft tailored replies, log data into Google Sheets, or auto-archive unwanted noise.
 
