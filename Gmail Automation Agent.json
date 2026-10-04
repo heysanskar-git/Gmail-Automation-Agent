@@ -1,0 +1,1002 @@
+{
+  "name": "Gmail Automation Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "custom",
+              "cronExpression": " */5 * * * *"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -848,
+        128
+      ],
+      "id": "7a538e01-091f-4120-940b-b7815a0a5038",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4XSTKo1gisxGeiks",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputText": "=Subject:  {{ $json.Subject }}\nEmail body: {{ $json.snippet }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "Promotions",
+              "description": "Sales, marketing, and promotional offers."
+            },
+            {
+              "category": "Social",
+              "description": "Updates/alerts from social media platforms (YouTube, Facebook, etc.)."
+            },
+            {
+              "category": "Personal",
+              "description": "Correspondence from friends or family."
+            },
+            {
+              "category": "Sales",
+              "description": "Inquiries, leads, client proposals, and deal documents."
+            },
+            {
+              "category": "Recruitment",
+              "description": "Job applications and team inquiries."
+            },
+            {
+              "category": "Receipts",
+              "description": "Invoices, payment confirmations, and transactional receipts."
+            },
+            {
+              "category": "Miscellaneous",
+              "description": "Catch-all category for items not matching previous labels."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1.1,
+      "position": [
+        -224,
+        48
+      ],
+      "id": "ff463d3e-eaa2-4caa-b369-4ec325888514",
+      "name": "Text Classifier",
+      "executeOnce": false,
+      "retryOnFail": false,
+      "alwaysOutputData": false,
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": [
+          "Label_5530998756349220772"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        272,
+        784
+      ],
+      "id": "e1ec5445-ee7c-43b4-8a91-9211d8ac4ce7",
+      "name": "Add label to message1",
+      "webhookId": "b2fb1403-2be0-4cb3-a612-8da970a48555",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4XSTKo1gisxGeiks",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": [
+          "Label_3454666241375702372"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        256,
+        512
+      ],
+      "id": "9d16fdf3-0935-4428-ab3c-548a30c45682",
+      "name": "Add label to message2",
+      "webhookId": "b2fb1403-2be0-4cb3-a612-8da970a48555",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4XSTKo1gisxGeiks",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": [
+          "Label_4386318362052122313"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        256,
+        112
+      ],
+      "id": "517ba5ab-bfb1-40fb-89bb-da6cde398acb",
+      "name": "Add label to message3",
+      "webhookId": "b2fb1403-2be0-4cb3-a612-8da970a48555",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4XSTKo1gisxGeiks",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": [
+          "Label_3993218959375139886"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        256,
+        -208
+      ],
+      "id": "bd4a7275-c790-4902-abef-393d3833eda6",
+      "name": "Add label to message4",
+      "webhookId": "b2fb1403-2be0-4cb3-a612-8da970a48555",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4XSTKo1gisxGeiks",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": [
+          "Label_4387287277401801795"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        256,
+        -448
+      ],
+      "id": "59ad6e0c-5c01-4f81-aa8e-7b2227a1b4aa",
+      "name": "Add label to message5",
+      "webhookId": "b2fb1403-2be0-4cb3-a612-8da970a48555",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4XSTKo1gisxGeiks",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": [
+          "Label_4028725585667347483"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        240,
+        -672
+      ],
+      "id": "8bedf68d-0134-4479-bc29-ec2742e572db",
+      "name": "Add label to message6",
+      "webhookId": "b2fb1403-2be0-4cb3-a612-8da970a48555",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4XSTKo1gisxGeiks",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        512,
+        -672
+      ],
+      "id": "43215b69-1231-4ef7-a0da-253a801f45fd",
+      "name": "Mark a message as read",
+      "webhookId": "260c975f-ea60-4438-bc46-6050bb6bca71",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4XSTKo1gisxGeiks",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1wwoadh4Dywkmb32yMVAL83Uel4PtaI5teFCB6fHwl6k",
+          "mode": "list",
+          "cachedResultName": "Email Summary n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wwoadh4Dywkmb32yMVAL83Uel4PtaI5teFCB6fHwl6k/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wwoadh4Dywkmb32yMVAL83Uel4PtaI5teFCB6fHwl6k/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $('Gmail Trigger').item.json.id }}",
+            "Date": "={{ $now }}",
+            "Subject Line": "={{ $('Gmail Trigger').item.json.Subject }}",
+            "Summary": "={{ $json.content }}",
+            "Snippet": "={{ $('Gmail Trigger').item.json.snippet }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Subject Line",
+              "displayName": "Subject Line",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Snippet",
+              "displayName": "Snippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        832,
+        -448
+      ],
+      "id": "fe5ef68c-7641-4742-899f-11bcfefa558c",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "HK2zyKgbOQIl8fHg",
+          "name": "Google Sheets account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "models/gemini-3-flash-preview"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You're an intelligent bot at summarizing emails.",
+              "role": "model"
+            },
+            {
+              "content": "=Subject:{{ $('Gmail Trigger').item.json.Subject }}\nEmail Body:{{ $('Gmail Trigger').item.json.snippet }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        -448
+      ],
+      "id": "8556c664-d790-467b-9244-223c2f45423e",
+      "name": "Message a model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "gEnap01Xh7ZxjkHG",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gemma4:31b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        -224,
+        384
+      ],
+      "id": "61df6c0e-7d19-4fc9-b239-5b0d8b263237",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "4NfE5OOshuOeEJR8",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Subject:{{ $('Gmail Trigger').item.json.Subject }}\nEmail body:{{ $('Gmail Trigger').item.json.snippet }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are an expert cold email writer with 5 years experience.\nYour job is to generate short, personalised cold emails that propose AI and automation services to businesses.\nKeep the tone friendly, human generated, simple, and clear.\nAlways personalise the email using the details provided in the user prompt.\nAvoid generic lines.\nWrite the cold email in 4-5 lines max.\nFocus on how AI agents and automation can help them improve efficiency, reduce manual work, increase sales, and streamline operations.\nDo not add placeholders or brackets.\nProduce only the final email body with no introduction or explanation.\nAdd signature Best, Sanskar"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        464,
+        -208
+      ],
+      "id": "47c51003-f700-4495-8876-d866133ca10f",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "={{ $json.output.subject }}",
+        "message": "={{ $json.output.body }}",
+        "options": {
+          "threadId": ""
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        832,
+        -208
+      ],
+      "id": "5fa8a0b7-6744-4168-9a8e-623f731bd87e",
+      "name": "Create a draft",
+      "webhookId": "326dacfe-69a6-4b6e-9949-07866ac193fa",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4XSTKo1gisxGeiks",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"subject\": \"subject\",\n    \"body\": \"body\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        640,
+        -16
+      ],
+      "id": "9a2e14f6-b4aa-4b6c-ada6-bf58b11c3e6a",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "model": "gemma4:31b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        464,
+        -32
+      ],
+      "id": "0ae3bfc4-b922-478a-ad65-beb74ccd5c29",
+      "name": "Ollama Chat Model1",
+      "credentials": {
+        "ollamaApi": {
+          "id": "4NfE5OOshuOeEJR8",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Subject:{{ $('Gmail Trigger').item.json.Subject }}\nEmail body:{{ $('Gmail Trigger').item.json.snippet }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are an expert sales email writer with 5 years experience.\nYour job is to generate short, personalised sales email\nDo not add placeholders or brackets.\nProduce only the final email body with no introduction or explanation.\nAdd signature Best, Sanskar"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        464,
+        112
+      ],
+      "id": "329583a3-607e-4668-a0c3-a3939888c850",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": "gemma4:31b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        464,
+        304
+      ],
+      "id": "d8300143-4d89-463c-a2df-a495bb566b06",
+      "name": "Ollama Chat Model2",
+      "credentials": {
+        "ollamaApi": {
+          "id": "4NfE5OOshuOeEJR8",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"subject\": \"subject\",\n    \"body\": \"body\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        656,
+        288
+      ],
+      "id": "e79af97e-2b78-41e1-be64-76b573339edd",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "={{ $json.output.subject }}{{ $('Gmail Trigger').item.json.Subject }}",
+        "message": "={{ $json.output.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        832,
+        112
+      ],
+      "id": "29530eab-2826-4926-841e-45900aa89693",
+      "name": "Create a draft1",
+      "webhookId": "326dacfe-69a6-4b6e-9949-07866ac193fa",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4XSTKo1gisxGeiks",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Subject:{{ $('Gmail Trigger').item.json.Subject }}\nEmail body:{{ $('Gmail Trigger').item.json.snippet }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are an expert manage recuriment email replyying  with 5 years experience.\nYour job is to generate short, personalised cold  email\nDo not add placeholders or brackets.\nProduce only the final email body with no introduction or explanation.\nAdd signature Best, Sanskar"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        464,
+        512
+      ],
+      "id": "ebef4d47-1142-41a8-a91e-f5b0f7a1952e",
+      "name": "AI Agent2"
+    },
+    {
+      "parameters": {
+        "model": "gemma4:31b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        464,
+        672
+      ],
+      "id": "20ca2e48-1a92-4004-a42e-774868cae28e",
+      "name": "Ollama Chat Model3",
+      "credentials": {
+        "ollamaApi": {
+          "id": "4NfE5OOshuOeEJR8",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"subject\": \"subject\",\n    \"body\": \"body\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        656,
+        672
+      ],
+      "id": "2baeab87-aeb0-4315-90ad-1d84a32f21ed",
+      "name": "Structured Output Parser2"
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "={{ $json.output.subject }}{{ $('Gmail Trigger').item.json.Subject }}",
+        "message": "={{ $json.output.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        832,
+        512
+      ],
+      "id": "34d748fd-6de9-4ee4-aed3-c6361cd851c6",
+      "name": "Create a draft2",
+      "webhookId": "326dacfe-69a6-4b6e-9949-07866ac193fa",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4XSTKo1gisxGeiks",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "heysanskar10@gmail.com",
+        "subject": "={{ $('Gmail Trigger').item.json.Subject }}",
+        "message": "={{ $('Gmail Trigger').item.json.snippet }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        496,
+        784
+      ],
+      "id": "2c497a58-8ff1-4f9b-8574-af94aba2342b",
+      "name": "Send a message",
+      "webhookId": "6a41a2cc-06fe-44fa-9823-185f338c9794",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4XSTKo1gisxGeiks",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": [
+          "Label_7637290083007972709"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        272,
+        1072
+      ],
+      "id": "b4c04908-fc92-4cd5-8c7a-6ab56aee6c39",
+      "name": "Add label to message",
+      "webhookId": "b2fb1403-2be0-4cb3-a612-8da970a48555",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4XSTKo1gisxGeiks",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        464,
+        1072
+      ],
+      "id": "eac0779f-2ddd-43da-8871-37acfefcf7ac",
+      "name": "Mark a message as read1",
+      "webhookId": "4416b819-42c8-4f67-858d-87b165a42261",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4XSTKo1gisxGeiks",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Gmail Trigger": [
+      {
+        "json": {
+          "id": "1a1087e3b65fa3cb",
+          "threadId": "1a1087e3b65fa3cb",
+          "snippet": "",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 893,
+          "historyId": "903521",
+          "internalDate": "1791143852000",
+          "labels": [
+            {
+              "id": "SENT",
+              "name": "SENT"
+            },
+            {
+              "id": "INBOX",
+              "name": "INBOX"
+            }
+          ],
+          "To": "heysanskar10@gmail.com",
+          "Subject": "",
+          "From": "Sanskar Kumar <heysanskar10@gmail.com>"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "Add label to message6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add label to message5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add label to message4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add label to message3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add label to message2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add label to message1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add label to message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add label to message6": {
+      "main": [
+        [
+          {
+            "node": "Mark a message as read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add label to message5": {
+      "main": [
+        [
+          {
+            "node": "Message a model1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model1": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add label to message4": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Create a draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add label to message3": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Create a draft1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add label to message2": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent2": {
+      "main": [
+        [
+          {
+            "node": "Create a draft2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add label to message1": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add label to message": {
+      "main": [
+        [
+          {
+            "node": "Mark a message as read1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "4e395fbc-d8f0-40d5-9b89-d26feddb39b9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "613edd5ca3bc033a42faac91b3679d2bf5d07b39b022f69ec4afde5bf2affa76"
+  },
+  "nodeGroups": [],
+  "id": "ZxEXrfabj92Y3qdt",
+  "tags": []
+}
